@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MVC_EF_Start.DataAccess;
-// https://stackoverflow.com/a/58072137/1385857
 using Microsoft.Extensions.Hosting;
 
 namespace MVC_EF_Start
@@ -24,7 +23,7 @@ namespace MVC_EF_Start
         {
             // Setup EF connection
             // https://stackoverflow.com/a/43098152/1385857
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:IEXTrading:ConnectionString"]));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:CovidDbAzure:ConnectionString"]));
 
             // added from MVC template
             //services.AddMvc();

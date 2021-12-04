@@ -1,40 +1,67 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+
+using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace MVC_EF_Start.Models
 {
-    public class Company
+
+    public class ChartModel
     {
-        public string Id { get; set; }
-        public string name { get; set; }
-        public string date { get; set; }
-        public bool isEnabled { get; set; }
-        public string type { get; set; }
-        public string iexId { get; set; }
-        public List<Quote> Quotes { get; set; }
+        public string ChartType { get; set; }
+        public string Labels { get; set; }
+        public string Data { get; set; }
+        public string Title { get; set; }
     }
 
-    public class Quote
+    //json as class
+    public class Covid_Group
+
     {
+        [Key]
+        public int grp_id { get; set; }
+        public string condition_group { get; set; }
+
+        public List<Covid_Condition> Covid_Condition { get; set; }
+
+    }
+
+    public class Covid_Groups
+
+    {
+        [Key]
+        public int grp_id { get; set; }
+
+        public List<Covid_Group> covid_group_list { get; set; }
+
+    }
+
+    public class Covid_Conditions
+    {
+        [Key]
         public int Id { get; set; }
-        public string date { get; set; }
-        public float open { get; set; }
-        public float high { get; set; }
-        public float low { get; set; }
-        public float close { get; set; }
-        public int volume { get; set; }
-        public int unadjustedVolume { get; set; }
-        public float change { get; set; }
-        public float changePercent { get; set; }
-        public float vwap { get; set; }
-        public string label { get; set; }
-        public float changeOverTime { get; set; }
-        public string ClassDemo { get; set; }
-        public Company Company { get; set; }
+        public List<Covid_Condition> covid_list { get; set; }
     }
 
-    public class ChartRoot
+    public class Covid_Condition
     {
-        public Quote[] chart { get; set; }
+        [Key]
+        public int CaseId { get; set; }
+        public Covid_Group grp_id { get; set; }
+        public string condition_group { get; set; }
+        public string condition { get; set; }
+        public string age_group { get; set; }
+        public string covid_19_deaths { get; set; }
+        public Covid_Conditions Id { get; set; }
     }
+
+    
+
+
 }
+
+
+
